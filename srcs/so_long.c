@@ -22,7 +22,11 @@ void	quit_game(t_data *data)
 	 	mlx_destroy_image(data->mlx, data->game.p_anim_r[i++]);
 	i = 0;
 	while (i < 6)
+		mlx_destroy_image(data->mlx, data->game.p_anim_s[i++]);
+	i = 0;
+	while (i < 6)
 		mlx_destroy_image(data->mlx, data->game.enemy_anim[i++]);
+
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -74,14 +78,13 @@ int	main(void)
 	int		h;
 	int		w;
 
-	w_res = 16;
-	h_res = 9;
+	w_res = 38;
+	h_res = 20;
 	data.frame = 0;
+	data.idle_time = 0;
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, w_res * 48, h_res * 48, "so_long");
-	
-	//malloc_map(h_res, w_res, &data);
-	data.game.grass = mlx_xpm_file_to_image(data.mlx, "./images/grass.xpm", &w , &h);
+	data.game.grass = mlx_xpm_file_to_image(data.mlx, "./images/grass2.xpm", &w , &h);
 	load_animations(&data);
 	data.game.player_w = 3 * 48;
 	data.game.player_h = 3 * 48;

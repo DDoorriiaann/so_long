@@ -1,18 +1,26 @@
 #include "so_long.h"
 
-void	player_frame(t_data *data)
+void	enemies_frame(t_data *data)
 {
-	mlx_put_image_to_window(data->mlx, 
-	 							data->mlx_win, 
-	 							data->game.p_anim_r[(data->frame) / 5], 
-	 							data->game.player_w,
-	 							data->game.player_h);
+	int i;
+
+	i = 0;
+	while (i < data->game.enemies_nb)
+	{
+		mlx_put_image_to_window(data->mlx,
+							data->mlx_win,
+							data->game.enemy_anim[(data->frame) / 8], 
+							data->game.enemies_w[i],
+							data->game.enemies_h[i]);
+		i++;
+	}
 }
 
-void	move_player(t_data *data,int x_offset, int y_offset)
+void	move_enemies(t_data *data)
 {
-//	ft_putnbr_fd(data->game.player_h, 1);
-	data->idle_time = 0;
+	int x_offset; 
+	int y_offset;
+
 	mlx_put_image_to_window(data->mlx,
 							data->mlx_win, 
 							data->game.grass, 
