@@ -11,8 +11,8 @@ void	player_frame(t_data *data)
 
 void	move_player(t_data *data,int x_offset, int y_offset)
 {
-	
-	mlx_put_image_to_window(data->mlx, 
+//	ft_putnbr_fd(data->game.player_h, 1);	
+	mlx_put_image_to_window(data->mlx,
 							data->mlx_win, 
 							data->game.grass, 
 							data->game.player_w,

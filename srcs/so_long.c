@@ -14,14 +14,15 @@
 
 void	quit_game(t_data *data)
 {
-	 int i;
+	int i;
 
-	 i = 0;
+	i = 0;
 	mlx_destroy_image(data->mlx, data->game.grass);
-	 while (i < 5)
+	while (i < 5)
 	 	mlx_destroy_image(data->mlx, data->game.p_anim_r[i++]);
-//	mlx_destroy_image(data->mlx, data->game.p_anim_r[0]);
-//	mlx_destroy_image(data->mlx, data->game.player_r);
+	i = 0;
+	while (i < 6)
+		mlx_destroy_image(data->mlx, data->game.enemy_anim[i++]);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -62,7 +63,7 @@ void	texture_map(int h_res, int w_res, t_data *data)
 		j = 0;
 		i++;
 	}
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->game.p_anim_r[0], data->game.player_w, data->game.player_h);
+//	mlx_put_image_to_window(data->mlx, data->mlx_win, data->game.p_anim_r[0], data->game.player_w, data->game.player_h);
 }
 
 int	main(void)
@@ -75,23 +76,22 @@ int	main(void)
 
 	w_res = 16;
 	h_res = 9;
-	
+	data.frame = 0;
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, w_res * 48, h_res * 48, "so_long");
+	
 	//malloc_map(h_res, w_res, &data);
 	data.game.grass = mlx_xpm_file_to_image(data.mlx, "./images/grass.xpm", &w , &h);
-	//data.game.player_l = mlx_xpm_file_to_image(data.mlx, "./images/fox_l1.xpm", &w, &h);
-	data.game.p_anim_r[0] = mlx_xpm_file_to_image(data.mlx, "./images/fox_r1.xpm", &w, &h);
-	data.game.p_anim_r[1] = mlx_xpm_file_to_image(data.mlx, "./images/fox_r2.xpm", &w, &h);
-	data.game.p_anim_r[2] = mlx_xpm_file_to_image(data.mlx, "./images/fox_r3.xpm", &w, &h);
-	data.game.p_anim_r[3] = mlx_xpm_file_to_image(data.mlx, "./images/fox_r4.xpm", &w, &h);
-	data.game.p_anim_r[4] = mlx_xpm_file_to_image(data.mlx, "./images/fox_r5.xpm", &w, &h);
-	data.game.player_h = 0;
+	load_animations(&data);
+	data.game.player_w = 3 * 48;
+	data.game.player_h = 3 * 48;
+	data.game.enemies_nb = 1;
+	data.game.enemies_w[0] = 9 * 48;
+	data.game.enemies_h[0] = 4 * 48;
+
 	mlx_key_hook(data.mlx_win, deal_key, &data);
 	texture_map(h_res, w_res, &data);
-	
 //	mlx_put_image_to_window(data.mlx, data.mlx_win, data.game.player, 0, 0);
-	
 	mlx_loop_hook(data.mlx, clock, &data);
 	mlx_loop(data.mlx);
 }
