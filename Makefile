@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	so_long.c move_player.c utils.c load_animations.c
+SRCS			=	so_long.c move_player.c move_enemies.c utils.c\
+					load_animations.c load_enemies.c
 
 OBJS			=	${addprefix srcs/, ${SRCS:.c=.o}}
 

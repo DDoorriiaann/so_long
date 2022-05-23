@@ -14,12 +14,12 @@
 
 void	quit_game(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	mlx_destroy_image(data->mlx, data->game.grass);
 	while (i < 5)
-	 	mlx_destroy_image(data->mlx, data->game.p_anim_r[i++]);
+		mlx_destroy_image(data->mlx, data->game.p_anim_r[i++]);
 	i = 0;
 	while (i < 6)
 		mlx_destroy_image(data->mlx, data->game.p_anim_s[i++]);
@@ -47,7 +47,7 @@ int	deal_key(int key, t_data *data)
 		move_player(data, 0, -1);
 	if (key == 65364)
 		move_player(data, 0, 1);
-	return(0);
+	return (0);
 }
 
 void	texture_map(int h_res, int w_res, t_data *data)
@@ -61,13 +61,13 @@ void	texture_map(int h_res, int w_res, t_data *data)
 	{
 		while (j < w_res)
 		{
-			mlx_put_image_to_window(data->mlx, data->mlx_win, data->game.grass, j * 48 , i * 48);
+			mlx_put_image_to_window(data->mlx,
+				data->mlx_win, data->game.grass, j * 48, i * 48);
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-//	mlx_put_image_to_window(data->mlx, data->mlx_win, data->game.p_anim_r[0], data->game.player_w, data->game.player_h);
 }
 
 int	main(void)
@@ -78,23 +78,20 @@ int	main(void)
 	int		h;
 	int		w;
 
-	w_res = 38;
+	w_res = 40;
 	h_res = 20;
 	data.frame = 0;
 	data.idle_time = 0;
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, w_res * 48, h_res * 48, "so_long");
-	data.game.grass = mlx_xpm_file_to_image(data.mlx, "./images/grass2.xpm", &w , &h);
+	data.game.grass = mlx_xpm_file_to_image(
+			data.mlx, "./images/grass2.xpm", &w, &h);
 	load_animations(&data);
 	data.game.player_w = 3 * 48;
 	data.game.player_h = 3 * 48;
-	data.game.enemies_nb = 1;
-	data.game.enemies_w[0] = 9 * 48;
-	data.game.enemies_h[0] = 4 * 48;
-
+	load_enemies(&data);
 	mlx_key_hook(data.mlx_win, deal_key, &data);
 	texture_map(h_res, w_res, &data);
-//	mlx_put_image_to_window(data.mlx, data.mlx_win, data.game.player, 0, 0);
 	mlx_loop_hook(data.mlx, clock, &data);
 	mlx_loop(data.mlx);
 }

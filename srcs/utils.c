@@ -4,19 +4,21 @@ void	animate_player(t_data *data)
 {
 	if (data->idle_time < 3)
 	{
-		mlx_put_image_to_window(data->mlx, 
-								data->mlx_win, 
-								data->game.p_anim_r[(data->frame) / 5], 
-								data->game.player_w,
-								data->game.player_h);
+		mlx_put_image_to_window(
+			data->mlx,
+			data->mlx_win,
+			data->game.p_anim_r[(data->frame) / 5],
+			data->game.player_w,
+			data->game.player_h);
 	}
 	else
 	{
-		mlx_put_image_to_window(data->mlx, 
-						data->mlx_win, 
-						data->game.p_anim_s[(data->frame) / 4], 
-						data->game.player_w,
-						data->game.player_h);
+		mlx_put_image_to_window(
+			data->mlx,
+			data->mlx_win,
+			data->game.p_anim_s[(data->frame) / 4],
+			data->game.player_w,
+			data->game.player_h);
 	}
 }
 
@@ -34,21 +36,33 @@ void	animate_enemies(t_data *data)
 	// 						data->game.enemies_h[i]);
 	// 	i++;
 	// }
-	mlx_put_image_to_window(data->mlx,
-							data->mlx_win,
-							data->game.enemy_anim[(data->frame) / 4], 
-							data->game.enemies_w[0],
-							data->game.enemies_h[0]);
+	mlx_put_image_to_window(
+		data->mlx,
+		data->mlx_win,
+		data->game.enemy_anim[(data->frame) / 4],
+		data->game.enemies_w[0],
+		data->game.enemies_h[0]);
+}
+
+int	ft_rand(void)
+{
+	static int	seed = 69;
+	long int	ret;
+
+	ret = (long int)&ret;
+	ret /= seed++;
+	return (ret % 4);
 }
 
 int	clock(t_data *data)
 {
-	usleep(1000000/24);
+	usleep(1000000 / 24);
 	data->frame++;
 	if (data->frame >= 23 || data->frame < 0)
 	{	
 		data->frame = 0;
 		data->idle_time++;
+		move_enemies(data);
 	}
 	animate_player(data);
 	animate_enemies(data);

@@ -6,7 +6,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct	s_game
+typedef struct s_game
 {
 	void		*grass;
 	//void		*player_l;
@@ -21,9 +21,7 @@ typedef struct	s_game
 	int			enemies_w[20];
 }	t_game;
 
-
-
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*mlx;
 	void	*mlx_win;
@@ -32,9 +30,12 @@ typedef struct	s_data
 	int		idle_time;
 }	t_data;
 
-void	move_player(t_data *data,int x_offset, int y_offset);
+void	move_player(t_data *data, int x_offset, int y_offset);
+void	move_enemies(t_data *data);
 int		clock(t_data *data);
+int		ft_rand(void);
 int		deal_key(int key, t_data *data);
 int		load_animations(t_data *data);
+int		load_enemies(t_data *data);
 
 #endif
