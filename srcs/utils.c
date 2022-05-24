@@ -3,14 +3,7 @@
 void	animate_player(t_data *data)
 {
 	if (data->idle_time < 3)
-	{
-		mlx_put_image_to_window(
-			data->mlx,
-			data->mlx_win,
-			data->game.p_anim_r[(data->frame) / 5],
-			data->game.player_w,
-			data->game.player_h);
-	}
+		player_frame(data);
 	else
 	{
 		mlx_put_image_to_window(

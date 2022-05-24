@@ -9,9 +9,9 @@
 typedef struct s_game
 {
 	void		*grass;
-	//void		*player_l;
-	//void		*player_r;
+	int			player_dir;
 	void		*p_anim_r[5];
+	void		*p_anim_l[5];
 	void		*p_anim_s[6];
 	int			player_h;
 	int			player_w;
@@ -37,5 +37,6 @@ int		ft_rand(void);
 int		deal_key(int key, t_data *data);
 int		load_animations(t_data *data);
 int		load_enemies(t_data *data);
+void	player_frame(t_data *data);
 
 #endif

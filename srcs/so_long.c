@@ -40,9 +40,15 @@ int	deal_key(int key, t_data *data)
 	if (key == 65307)
 		quit_game(data);
 	if (key == 65363)
+	{
 		move_player(data, 1, 0);
+		data->game.player_dir = 1;
+	}
 	if (key == 65361)
+	{
 		move_player(data, -1, 0);
+		data->game.player_dir = -1;
+	}
 	if (key == 65362)
 		move_player(data, 0, -1);
 	if (key == 65364)
@@ -78,14 +84,15 @@ int	main(void)
 	int		h;
 	int		w;
 
-	w_res = 40;
-	h_res = 20;
+	w_res = 20;
+	h_res = 10;
 	data.frame = 0;
 	data.idle_time = 0;
+	data.game.player_dir = 1;
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, w_res * 48, h_res * 48, "so_long");
 	data.game.grass = mlx_xpm_file_to_image(
-			data.mlx, "./images/grass2.xpm", &w, &h);
+			data.mlx, "./images/grass.xpm", &w, &h);
 	load_animations(&data);
 	data.game.player_w = 3 * 48;
 	data.game.player_h = 3 * 48;
