@@ -76,29 +76,58 @@ void	texture_map(int h_res, int w_res, t_data *data)
 	}
 }
 
-int	main(void)
+int	initialize_game(t_data *data)
+{
+	data->frame = 0;
+	data->idle_time = 0;
+	data->game.player_dir = 1;
+	data->mlx = mlx_init();
+	data->mlx_win = mlx_new_window(
+			data->mlx, data->w_res * 48,
+			data->h_res * 48, "so_long");
+	return (0);
+}
+
+int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		h_res;
-	int		w_res;
-	int		h;
-	int		w;
+	// int		h;
+	// int		w;
+	int		error;
 
-	w_res = 20;
-	h_res = 10;
-	data.frame = 0;
-	data.idle_time = 0;
-	data.game.player_dir = 1;
-	data.mlx = mlx_init();
-	data.mlx_win = mlx_new_window(data.mlx, w_res * 48, h_res * 48, "so_long");
-	data.game.grass = mlx_xpm_file_to_image(
-			data.mlx, "./images/grass.xpm", &w, &h);
-	load_animations(&data);
-	data.game.player_w = 3 * 48;
-	data.game.player_h = 3 * 48;
-	load_enemies(&data);
-	mlx_key_hook(data.mlx_win, deal_key, &data);
-	texture_map(h_res, w_res, &data);
-	mlx_loop_hook(data.mlx, clock, &data);
-	mlx_loop(data.mlx);
+	if (argc != 2)
+		return (1);
+	error = parse_map(argv[1], &data);
+	if (error)
+	{
+		throw_error(error);
+		return (1);
+	}
+	// check if w_res * 48 && h_res * 48 fit inside screensize else throw error !!!
+	// data.game.grass = mlx_xpm_file_to_image(
+	// 		data.mlx, "./images/grass.xpm", &w, &h);
+	// load_animations(&data);
+	// data.game.player_w = 3 * 48;
+	// data.game.player_h = 3 * 48;
+	// load_enemies(&data);
+	// mlx_key_hook(data.mlx_win, deal_key, &data);
+	// texture_map(data.h_res, data.w_res, &data);
+	// mlx_loop_hook(data.mlx, clock, &data);
+	// mlx_loop(data.mlx);
+	
+	int i = 0;
+	//int j = 0;
+	while (i < data.h_res)
+	{		
+	//	while (j < data.w_res + 1)
+			printf("%s", data.map[i]);
+	//	j = 0;
+		i++;
+	}
+	int j = 0;
+	while (j < data.h_res)
+		free(data.map[j++]);
+	free(data.map);
+
+	return (0);
 }

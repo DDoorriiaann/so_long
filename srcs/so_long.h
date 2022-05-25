@@ -25,11 +25,15 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*mlx_win;
+	char	**map;
+	int		w_res;
+	int		h_res;
 	t_game	game;
 	int		frame;
 	int		idle_time;
 }	t_data;
 
+int		parse_map(char *filename, t_data *data);
 void	move_player(t_data *data, int x_offset, int y_offset);
 void	move_enemies(t_data *data);
 int		clock(t_data *data);
@@ -38,5 +42,6 @@ int		deal_key(int key, t_data *data);
 int		load_animations(t_data *data);
 int		load_enemies(t_data *data);
 void	player_frame(t_data *data);
+void	throw_error(int error);
 
 #endif
