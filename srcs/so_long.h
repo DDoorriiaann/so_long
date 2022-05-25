@@ -9,6 +9,8 @@
 typedef struct s_game
 {
 	void		*grass;
+	void		*wall;
+	void		*exit;
 	int			player_dir;
 	void		*p_anim_r[5];
 	void		*p_anim_l[5];
@@ -41,6 +43,8 @@ int		ft_rand(void);
 int		deal_key(int key, t_data *data);
 int		load_animations(t_data *data);
 int		load_enemies(t_data *data);
+int		load_textures(t_data *data);
+void	texture_map(t_data *data);
 void	player_frame(t_data *data);
 void	throw_error(int error);
 

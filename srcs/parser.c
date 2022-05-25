@@ -11,7 +11,6 @@ int	check_map(int fd, t_data *data)
 	while (i < data->h_res)
 	{
 		line = get_next_line(fd);
-		printf("%s", line);
 		if (!line)
 			return (1);
 		// data->map[i] = malloc(strlen(line) + 1);
