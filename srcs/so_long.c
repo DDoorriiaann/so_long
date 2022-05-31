@@ -23,12 +23,14 @@ void	quit_game(t_data *data)
 	while (i < 5)
 		mlx_destroy_image(data->mlx, data->game.p_anim_r[i++]);
 	i = 0;
+	while (i < 5)
+		mlx_destroy_image(data->mlx, data->game.p_anim_l[i++]);
+	i = 0;
 	while (i < 6)
 		mlx_destroy_image(data->mlx, data->game.p_anim_s[i++]);
 	i = 0;
 	while (i < 6)
 		mlx_destroy_image(data->mlx, data->game.enemy_anim[i++]);
-
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -45,22 +47,31 @@ void	quit_game(t_data *data)
 int	deal_key(int key, t_data *data)
 {
 	//ft_putnbr_fd(key, 1);
+	int	h;
+	int	w;
+
+	h = data->game.player_h;
+	w = data->game.player_w;
 	if (key == 65307)
 		quit_game(data);
 	if (key == 65363)
 	{
-		move_player(data, 1, 0);
+		if (data->map[h / 48][(w / 48) + 1] != '1')
+			move_player(data, 1, 0);
 		data->game.player_dir = 1;
 	}
 	if (key == 65361)
 	{
-		move_player(data, -1, 0);
+		if (data->map[h / 48][(w / 48) - 1] != '1')
+			move_player(data, -1, 0);
 		data->game.player_dir = -1;
 	}
 	if (key == 65362)
-		move_player(data, 0, -1);
+		if (data->map[(h / 48) - 1][w / 48] != '1')
+			move_player(data, 0, -1);
 	if (key == 65364)
-		move_player(data, 0, 1);
+		if (data->map[(h / 48) + 1][w / 48] != '1')
+			move_player(data, 0, 1);
 	return (0);
 }
 
@@ -97,8 +108,6 @@ int	main(int argc, char **argv)
 	texture_map(&data);
 
 	load_animations(&data);
-	// data.game.player_w = 3 * 48;
-	// data.game.player_h = 3 * 48;
 	load_enemies(&data);
 	mlx_key_hook(data.mlx_win, deal_key, &data);
 	mlx_loop_hook(data.mlx, clock, &data);
