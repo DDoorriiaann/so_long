@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	quit_game(t_data *data)
+int	quit_game(t_data *data)
 {
 	int	i;
 
@@ -42,6 +42,13 @@ void	quit_game(t_data *data)
 		free(data->map[i++]);
 	free(data->map);
 	exit(0);
+	return (0);
+}
+
+void	set_hooks(t_data *data)
+{
+	//mlx_do_key_autorepeatoff(data->mlx_win);
+	mlx_hook(data->mlx_win, 17, 0, quit_game, data);
 }
 
 int	deal_key(int key, t_data *data)
@@ -109,8 +116,10 @@ int	main(int argc, char **argv)
 
 	load_animations(&data);
 	load_enemies(&data);
+	
 	mlx_key_hook(data.mlx_win, deal_key, &data);
 	mlx_loop_hook(data.mlx, clock, &data);
+	set_hooks(&data);
 	mlx_loop(data.mlx);
 	// int i = 0;
 	//int j = 0;
