@@ -24,7 +24,6 @@ void	player_frame(t_data *data)
 
 void	move_player(t_data *data,int x_offset, int y_offset)
 {
-//	ft_putnbr_fd(data->game.player_h, 1);
 	data->idle_time = 0;
 	mlx_put_image_to_window(
 		data->mlx,
@@ -34,21 +33,5 @@ void	move_player(t_data *data,int x_offset, int y_offset)
 		data->game.player_h);
 	data->game.player_w += x_offset * 48;
 	data->game.player_h += y_offset * 48;
-	// if (x_offset < 0)
-	// {
-	// 	mlx_put_image_to_window(data->mlx, 
-	// 							data->mlx_win, 
-	// 							data->game.player_l, 
-	// 							data->game.player_w,
-	// 							data->game.player_h);
-	// }
-	// else
-	// {
-	// 	mlx_put_image_to_window(data->mlx, 
-	// 							data->mlx_win, 
-	// 							data->game.player_r, 
-	// 							data->game.player_w,
-	// 							data->game.player_h);
-	// }
 	player_frame(data);
 }

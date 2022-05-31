@@ -55,9 +55,11 @@ int	clock(t_data *data)
 	{	
 		data->frame = 0;
 		data->idle_time++;
-		move_enemies(data);
+		if (data->game.enemies_nb > 0)
+			move_enemies(data);
 	}
 	animate_player(data);
-	animate_enemies(data);
+	if (data->game.enemies_nb > 0)
+		animate_enemies(data);
 	return (data->frame);
 }

@@ -14,8 +14,8 @@ void	put_wall(int w, int h, t_data *data)
 
 void	put_player(int w, int h, t_data *data)
 {
-	data->game.player_h = h;
-	data->game.player_w = w;
+	data->game.player_h = h * 48;
+	data->game.player_w = w * 48;
 }
 
 void	texture_map(t_data *data)
@@ -44,4 +44,5 @@ void	texture_map(t_data *data)
 		j = 0;
 		i++;
 	}
+	printf("player_h: %d \n", data->game.player_h);
 }

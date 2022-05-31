@@ -94,12 +94,13 @@ int	main(int argc, char **argv)
 	// check if w_res * 48 && h_res * 48 fit inside screensize else throw error !!!
 	initialize_game(&data);
 	load_textures(&data);
+	texture_map(&data);
+
 	load_animations(&data);
 	// data.game.player_w = 3 * 48;
 	// data.game.player_h = 3 * 48;
 	load_enemies(&data);
 	mlx_key_hook(data.mlx_win, deal_key, &data);
-	texture_map(&data);
 	mlx_loop_hook(data.mlx, clock, &data);
 	mlx_loop(data.mlx);
 	// int i = 0;
