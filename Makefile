@@ -13,7 +13,7 @@
 SRCS			=	so_long.c move_player.c move_enemies.c utils.c\
 				load_animations.c load_enemies.c parser.c \
 				get_next_line.c get_next_line_utils.c errors.c \
-				texture_map.c load_textures.c
+				texture_map.c load_textures.c moves_counter.c
 
 OBJS			=	${addprefix srcs/, ${SRCS:.c=.o}}
 

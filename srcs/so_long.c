@@ -19,7 +19,8 @@ int	quit_game(t_data *data)
 	i = 0;
 	mlx_destroy_image(data->mlx, data->game.grass);
 	mlx_destroy_image(data->mlx, data->game.wall);
-	//mlx_destroy_image(data->mlx, data->game.exit);
+	mlx_destroy_image(data->mlx, data->game.collectible);
+	mlx_destroy_image(data->mlx, data->game.moves_frame);
 	while (i < 5)
 		mlx_destroy_image(data->mlx, data->game.p_anim_r[i++]);
 	i = 0;
@@ -29,8 +30,8 @@ int	quit_game(t_data *data)
 	while (i < 6)
 		mlx_destroy_image(data->mlx, data->game.p_anim_s[i++]);
 	i = 0;
-	while (i < 6)
-		mlx_destroy_image(data->mlx, data->game.enemy_anim[i++]);
+	while (i < 2)
+		mlx_destroy_image(data->mlx, data->game.exit[i++]);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -38,9 +39,10 @@ int	quit_game(t_data *data)
 	data->game.wall = NULL;
 	//data->game.exit = NULL;
 	i = 0;
-	while (i < data->h_res)
+	while (i <= data->h_res)
 		free(data->map[i++]);
 	free(data->map);
+	//free(data->font);
 	exit(0);
 	return (0);
 }
@@ -51,9 +53,14 @@ void	set_hooks(t_data *data)
 	mlx_hook(data->mlx_win, 17, 0, quit_game, data);
 }
 
+// int	is_case_reachable(int coord[2], int off[2], t_data *data)
+// {
+// 	if (data->map[(coord[0] / 48) + off[1]][(coord[1] / 48) + off[1]] != '1')
+// 		return (1)
+// }
+
 int	deal_key(int key, t_data *data)
 {
-	//ft_putnbr_fd(key, 1);
 	int	h;
 	int	w;
 
@@ -62,17 +69,9 @@ int	deal_key(int key, t_data *data)
 	if (key == 65307)
 		quit_game(data);
 	if (key == 65363)
-	{
-		if (data->map[h / 48][(w / 48) + 1] != '1')
-			move_player(data, 1, 0);
-		data->game.player_dir = 1;
-	}
+		move_player_right(data);
 	if (key == 65361)
-	{
-		if (data->map[h / 48][(w / 48) - 1] != '1')
-			move_player(data, -1, 0);
-		data->game.player_dir = -1;
-	}
+		move_player_left(data);
 	if (key == 65362)
 		if (data->map[(h / 48) - 1][w / 48] != '1')
 			move_player(data, 0, -1);
@@ -87,18 +86,19 @@ int	initialize_game(t_data *data)
 	data->frame = 0;
 	data->idle_time = 0;
 	data->game.player_dir = 1;
+	data->moves = 0;
+	data->game.collectibles_nb = 0;
+	data->game.exit_status = 0;
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(
 			data->mlx, data->w_res * 48,
-			data->h_res * 48, "so_long");
+			(data->h_res + 1) * 48, "so_long");
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	// int		h;
-	// int		w;
 	int		error;
 
 	if (argc != 2)
@@ -113,22 +113,11 @@ int	main(int argc, char **argv)
 	initialize_game(&data);
 	load_textures(&data);
 	texture_map(&data);
-
 	load_animations(&data);
 	load_enemies(&data);
-	
 	mlx_key_hook(data.mlx_win, deal_key, &data);
 	mlx_loop_hook(data.mlx, clock, &data);
 	set_hooks(&data);
 	mlx_loop(data.mlx);
-	// int i = 0;
-	//int j = 0;
-	// while (i < data.h_res)
-	// {		
-	//	while (j < data.w_res + 1)
-			// printf("%s", data.map[i]);
-	//	j = 0;
-	// 	i++;
-	// }
 	return (0);
 }

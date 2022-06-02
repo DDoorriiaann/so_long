@@ -8,9 +8,13 @@
 
 typedef struct s_game
 {
+	void		*collectible;
 	void		*grass;
+	void		*moves_frame;
 	void		*wall;
-	void		*exit;
+	void		*exit[2];
+	int			exit_coord[2];
+	int			exit_status;
 	int			player_dir;
 	void		*p_anim_r[5];
 	void		*p_anim_l[5];
@@ -18,9 +22,13 @@ typedef struct s_game
 	int			player_h;
 	int			player_w;
 	void		*enemy_anim[6];
+	void		*collectible_anim[6];
 	int			enemies_nb;
 	int			enemies_h[20];
 	int			enemies_w[20];
+	int			collectibles_nb;
+	int			collectibles_h[100];
+	int			collectibles_w[100];
 }	t_game;
 
 typedef struct s_data
@@ -30,6 +38,7 @@ typedef struct s_data
 	char	**map;
 	int		w_res;
 	int		h_res;
+	int		moves;
 	t_game	game;
 	int		frame;
 	int		idle_time;
@@ -37,7 +46,12 @@ typedef struct s_data
 
 int		parse_map(char *filename, t_data *data);
 void	move_player(t_data *data, int x_offset, int y_offset);
+void	move_player_left(t_data *data);
+void	move_player_right(t_data *data);
 void	move_enemies(t_data *data);
+void	put_exit(int w, int h, t_data *data);
+int		put_moves_counter_frame(t_data *data);
+int		update_moves_counter(t_data *data);
 int		clock(t_data *data);
 int		ft_rand(void);
 int		deal_key(int key, t_data *data);

@@ -1,12 +1,30 @@
 #include "get_next_line.h"
 #include "so_long.h"
 
+int	add_counter_space(t_data *data)
+{
+	char	*line;
+	int		i;
+
+	line = malloc(data->w_res + 1);
+	i = 0;	
+	while (i < data->w_res)
+	{
+		line[i] = '0';
+		i++;
+	}
+	line[i] = '\0';
+	data->map[data->h_res] = ft_strdup(line);
+	free(line);
+	return (0);
+}
+
 int	check_map(int fd, t_data *data)
 {
 	char	*line;
 	int		i;
 
-	data->map = malloc(sizeof(char *) * data->h_res);
+	data->map = malloc(sizeof(char *) * (data->h_res + 1));
 	i = 0;
 	while (i < data->h_res)
 	{
@@ -19,9 +37,7 @@ int	check_map(int fd, t_data *data)
 		line = NULL;
 		i++;
 	}
-	// i = 0;
-	// while (data->map[i])
-	// 	printf("%s", data->map[i++]);
+	add_counter_space(data);
 	return (0);
 }
 
