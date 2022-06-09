@@ -49,6 +49,8 @@ int	ft_rand(void)
 
 int	clock(t_data *data)
 {
+	if (is_game_over(data))
+		return (1);
 	usleep(1000000 / 24);
 	data->frame++;
 	if (data->frame >= 23 || data->frame < 0)

@@ -12,7 +12,7 @@ typedef struct s_game
 	void		*grass;
 	void		*moves_frame;
 	void		*wall;
-	void		*exit[2];
+	void		*exit[3];
 	int			exit_coord[2];
 	int			exit_status;
 	int			player_dir;
@@ -46,12 +46,18 @@ typedef struct s_data
 
 int		parse_map(char *filename, t_data *data);
 void	move_player(t_data *data, int x_offset, int y_offset);
+void	move_player_up(t_data *data);
+void	move_player_down(t_data *data);
 void	move_player_left(t_data *data);
 void	move_player_right(t_data *data);
 void	move_enemies(t_data *data);
 void	put_exit(int w, int h, t_data *data);
+int		update_exit(t_data *data, int code);
 int		put_moves_counter_frame(t_data *data);
 int		update_moves_counter(t_data *data);
+int		put_collectibles_counter_frame(t_data *data);
+int		update_collectibles_counter(t_data *data);
+int		remove_collectible(t_data *data, int y_offset, int x_offset);
 int		clock(t_data *data);
 int		ft_rand(void);
 int		deal_key(int key, t_data *data);
@@ -60,6 +66,8 @@ int		load_enemies(t_data *data);
 int		load_textures(t_data *data);
 void	texture_map(t_data *data);
 void	player_frame(t_data *data);
+int		is_game_over(t_data *data);
+int		end_game(t_data *data);
 void	throw_error(int error);
 
 #endif

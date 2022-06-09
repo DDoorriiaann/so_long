@@ -7,8 +7,10 @@ int	update_moves_counter(t_data *data)
 
 	win_h = (data->h_res + 1) * 48;
 	moves_nb = ft_itoa(data->moves);
-	mlx_string_put(data->mlx, data->mlx_win, 28, win_h - 21, 16777215, "MOVES : ");
-	mlx_string_put(data->mlx, data->mlx_win, 98, win_h - 21, 16777215, moves_nb);
+	mlx_string_put(data->mlx, data->mlx_win,
+		24, win_h - 21, 16777215, "MOVES : ");
+	mlx_string_put(data->mlx, data->mlx_win,
+		94, win_h - 21, 16777215, moves_nb);
 	free(moves_nb);
 	ft_putstr_fd("Moves count: ", 1);
 	ft_putnbr_fd(data->moves, 1);

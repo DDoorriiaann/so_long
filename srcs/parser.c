@@ -7,7 +7,7 @@ int	add_counter_space(t_data *data)
 	int		i;
 
 	line = malloc(data->w_res + 1);
-	i = 0;	
+	i = 0;
 	while (i < data->w_res)
 	{
 		line[i] = '0';

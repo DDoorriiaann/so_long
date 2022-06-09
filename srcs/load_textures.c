@@ -41,6 +41,8 @@ int	load_exit(t_data *data)
 			data->mlx, "./images/exit/exit_closed2.xpm", &w, &h);
 	data->game.exit[1] = mlx_xpm_file_to_image(
 			data->mlx, "./images/exit/exit_open.xpm", &w, &h);
+	data->game.exit[2] = mlx_xpm_file_to_image(
+			data->mlx, "./images/exit/exit_game_over.xpm", &w, &h);
 	return (0);
 }
 

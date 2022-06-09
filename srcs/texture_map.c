@@ -29,6 +29,9 @@ void	put_exit(int w, int h, t_data *data)
 	if (data->game.exit_status == 1)
 		mlx_put_image_to_window(data->mlx,
 			data->mlx_win, data->game.exit[1], w * 48, h * 48);
+	if (data->game.exit_status == 2)
+		mlx_put_image_to_window(data->mlx,
+			data->mlx_win, data->game.exit[2], w * 48, h * 48);
 }
 
 void	put_player(int w, int h, t_data *data)
@@ -65,4 +68,6 @@ void	texture_map(t_data *data)
 	}
 	put_moves_counter_frame(data);
 	update_moves_counter(data);
+	put_collectibles_counter_frame(data);
+	update_collectibles_counter(data);
 }
