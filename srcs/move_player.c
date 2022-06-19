@@ -57,6 +57,8 @@ void	move_player(t_data *data, int x_offset, int y_offset)
 
 	h = data->game.player_h;
 	w = data->game.player_w;
+	if (is_game_over(data))
+		return;
 	put_moves_counter_frame(data);
 	update_moves_counter(data);
 	if (is_game_over(data))
