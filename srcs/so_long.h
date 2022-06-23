@@ -6,6 +6,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+
+
 typedef struct s_game
 {
 	void		*collectible;
@@ -44,7 +46,30 @@ typedef struct s_data
 	int		idle_time;
 }	t_data;
 
-int		parse_map(char *filename, t_data *data);
+typedef	enum error
+{
+	NO_ERROR,
+	CORRUPTED_FILE,
+	WRONG_LINE_LENGTH,
+	MALLOC_ERROR,
+	MAP_TOO_SMALL,
+}	t_error;
+
+typedef struct s_errordesc
+{
+	int		code;
+	char	*message;
+}	t_errordesc;
+
+static const t_errordesc	g_errordesc[] = {
+	{NO_ERROR, "No error"},
+	{CORRUPTED_FILE, "The map file is corrupted"},
+	{WRONG_LINE_LENGTH, "Line length is inconsistent"},
+	{MALLOC_ERROR, "Malloc failed to allocate memory"},
+	{MAP_TOO_SMALL, "The map is too small"},
+};
+
+t_error	parse_map(char *filename, t_data *data);
 void	move_player(t_data *data, int x_offset, int y_offset);
 void	move_player_up(t_data *data);
 void	move_player_down(t_data *data);
@@ -68,6 +93,6 @@ void	texture_map(t_data *data);
 void	player_frame(t_data *data);
 int		is_game_over(t_data *data);
 int		end_game(t_data *data);
-void	throw_error(int error);
+void	throw_error(t_error error);
 
 #endif

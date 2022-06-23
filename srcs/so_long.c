@@ -92,7 +92,7 @@ int	initialize_game(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		error;
+	t_error	error;
 
 	if (argc != 2)
 		return (1);
