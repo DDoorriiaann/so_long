@@ -58,8 +58,8 @@ t_error	get_map_size(int fd, t_data *data)
 		return (MAP_TOO_SMALL);
 	while (line != NULL)
 	{
-		if (((int)ft_strlen(line) != line_len && line[line_len - 1] == '\n') 
-				|| ((int)ft_strlen(line) != line_len - 1 && line[line_len - 1] == '\0'))
+		if (((int)ft_strlen(line) != line_len) 
+				|| ((int)ft_strlen(line) == line_len - 1 && line[line_len - 1] != '\0'))
 			return (WRONG_LINE_LENGTH);
 		ft_putstr_fd("line len : ", 1);
 		ft_putnbr_fd((int)ft_strlen(line), 1);
