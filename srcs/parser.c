@@ -61,9 +61,6 @@ t_error	get_map_size(int fd, t_data *data)
 		if (((int)ft_strlen(line) != line_len) 
 				|| ((int)ft_strlen(line) == line_len - 1 && line[line_len - 1] != '\0'))
 			return (WRONG_LINE_LENGTH);
-		ft_putstr_fd("line len : ", 1);
-		ft_putnbr_fd((int)ft_strlen(line), 1);
-		ft_putchar_fd('\n', 1);
 		free(line);
 		i++;
 		line = get_next_line(fd);
