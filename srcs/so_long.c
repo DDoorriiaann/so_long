@@ -96,7 +96,9 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (1);
-	error = parse_map(argv[1], &data);
+	error = check_file_extension(argv[1]);
+	if (!error)
+		error = parse_map(argv[1], &data);
 	if (error)
 	{
 		throw_error(error);

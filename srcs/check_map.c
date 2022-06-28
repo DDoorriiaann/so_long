@@ -1,5 +1,19 @@
 #include"so_long.h"
 
+t_error check_file_extension(char *path)
+{
+    int len;
+
+    len = ft_strlen(path);
+    if (path[len - 1] == 'r' 
+        && path[len - 2] == 'e'
+        && path[len - 3] == 'b'
+        && path[len - 4] == '.'
+        && path[len - 5])
+        return (NO_ERROR);
+    return (WRONG_FILE_EXTENSION);
+}
+
 t_error check_borders(t_data *data, t_map_check *counters)
 {
     if (counters->y == 0 || counters->y == data->h_res - 1)
@@ -31,6 +45,15 @@ t_error check_elements(t_data *data, t_map_check *counters)
     return (NO_ERROR);
 }
 
+t_error check_counters(t_map_check *counters)
+{
+    if (counters->c_count < 1
+        || counters->e_count < 1
+        || counters->p_count < 1)
+        return (INVALID_MAP);
+    return (NO_ERROR);
+}
+
 t_error check_map(t_data *data)
 {
     t_map_check counters;
@@ -41,7 +64,7 @@ t_error check_map(t_data *data)
     counters.c_count = 0;
     counters.e_count = 0;
     counters.p_count = 0;
-
+    error = NO_ERROR;
     while (counters.y < data->h_res)
     {
         while (counters.x < data->w_res)
@@ -57,6 +80,6 @@ t_error check_map(t_data *data)
         counters.x = 0;
         counters.y++;
     }
-
-    return (NO_ERROR);
+    error = check_counters(&counters);
+    return (error);
 }
