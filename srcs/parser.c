@@ -99,7 +99,7 @@ t_error	parse_map(char *pathname, t_data *data)
 	if (fd == -1)
 		return (CORRUPTED_FILE);
 	error_code = ber_to_array(fd, data);
-	//error_code = check_map(data);
+	error_code = check_map(data);
 	if (error_code)
 		return (error_code);
 	close(fd);

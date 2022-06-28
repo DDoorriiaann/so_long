@@ -15,7 +15,7 @@ SRCS			=	so_long.c move_player.c move_enemies.c utils.c\
 				get_next_line.c get_next_line_utils.c errors.c \
 				texture_map.c load_textures.c moves_counter.c \
 				collectibles_counter.c animate_player.c update_map.c \
-				game_over.c
+				game_over.c check_map.c
 
 OBJS			=	${addprefix srcs/, ${SRCS:.c=.o}}
 

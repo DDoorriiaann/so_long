@@ -53,7 +53,19 @@ typedef	enum error
 	WRONG_LINE_LENGTH,
 	MALLOC_ERROR,
 	MAP_TOO_SMALL,
+	MAP_BORDER_ERROR,
+	UNKNOWN_MAP_ELEMENT,
 }	t_error;
+
+typedef struct s_mapcheck
+{
+	int	p_count;
+	int	c_count;
+	int	e_count;
+	int	x;
+	int	y;
+}	t_map_check;
+
 
 typedef struct s_errordesc
 {
@@ -67,6 +79,8 @@ static const t_errordesc	g_errordesc[] = {
 	{WRONG_LINE_LENGTH, "Line length is inconsistent"},
 	{MALLOC_ERROR, "Malloc failed to allocate memory"},
 	{MAP_TOO_SMALL, "The map is too small"},
+	{MAP_BORDER_ERROR, "The map border is inconsistent"},
+	{UNKNOWN_MAP_ELEMENT, "The map contains an element from an unknown type"},
 };
 
 t_error	parse_map(char *filename, t_data *data);
@@ -94,5 +108,6 @@ void	player_frame(t_data *data);
 int		is_game_over(t_data *data);
 int		end_game(t_data *data);
 void	throw_error(t_error error);
+t_error check_map(t_data *data);
 
 #endif
