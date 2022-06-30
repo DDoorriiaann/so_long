@@ -42,14 +42,12 @@ int	quit_game(t_data *data)
 	while (i <= data->h_res)
 		free(data->map[i++]);
 	free(data->map);
-	//free(data->font);
 	exit(0);
 	return (0);
 }
 
 void	set_hooks(t_data *data)
 {
-	//mlx_do_key_autorepeatoff(data->mlx_win);
 	mlx_hook(data->mlx_win, 17, 0, quit_game, data);
 }
 
@@ -63,13 +61,13 @@ int	deal_key(int key, t_data *data)
 {
 	if (key == 65307)
 		quit_game(data);
-	if (key == 65363)
+	if (key == 65363 || key == 100)
 		move_player_right(data);
-	if (key == 65361)
+	if (key == 65361 || key == 97)
 		move_player_left(data);
-	if (key == 65362)
+	if (key == 65362 || key == 119)
 		move_player_up(data);
-	if (key == 65364)
+	if (key == 65364 || key == 115)
 		move_player_down(data);
 	return (0);
 }

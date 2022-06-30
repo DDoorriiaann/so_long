@@ -75,7 +75,7 @@ typedef struct s_errordesc
 	char	*message;
 }	t_errordesc;
 
-static const t_errordesc	g_errordesc[] = {
+static const t_errordesc	g_errordesc[9] = {
 	{NO_ERROR, "No error"},
 	{CORRUPTED_FILE, "The map file is corrupted or missing"},
 	{WRONG_LINE_LENGTH, "Line length is inconsistent"},

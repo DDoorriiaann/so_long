@@ -17,7 +17,16 @@ SRCS			=	so_long.c move_player.c move_enemies.c utils.c\
 				collectibles_counter.c animate_player.c update_map.c \
 				game_over.c check_map.c
 
+SRCS_BONUS		=	so_long_bonus.c move_player.c move_enemies.c utils.c\
+				load_animations.c load_enemies.c parser.c \
+				get_next_line.c get_next_line_utils.c errors.c \
+				texture_map.c load_textures.c moves_counter.c \
+				collectibles_counter.c animate_player.c update_map.c \
+				game_over.c check_map.c
+
 OBJS			=	${addprefix srcs/, ${SRCS:.c=.o}}
+
+OBJS_BONUS		=	${addprefix srcs/, ${SRCS_BONUS:.c=.o}}
 
 #OBJS_BONUS		=	${addprefix srcs/bonus/,${SRCS_BONUS:.c=.o}}
 
@@ -45,10 +54,10 @@ $(NAME)			:	${OBJS}
 
 all				:	${NAME}
 
-#bonus			:	${OBJS_BONUS}
-#					make -C libft
-#					make -C mlx_linux
-#					${CC} ${CFLAGS} ${LIB_FLAGS} ${OBJS_BONUS} -o ${NAME} -lft ${MLX_FLAGS}
+bonus			:	${OBJS_BONUS}
+					make -C libft
+					make -C mlx_linux
+					${CC} ${CFLAGS} ${LIB_FLAGS} ${OBJS_BONUS} -o ${NAME} -lft ${MLX_FLAGS}
 
 val				:	${NAME}
 					valgrind \
