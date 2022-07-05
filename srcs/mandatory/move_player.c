@@ -35,6 +35,7 @@ void	move_player_left(t_data *data)
 	&& data->map[h / 48][(w / 48) - 1] != 'E')
 		move_player(data, -1, 0);
 	data->game.player_dir = -1;
+	player_frame(data);
 }
 
 void	move_player_right(t_data *data)
@@ -48,6 +49,7 @@ void	move_player_right(t_data *data)
 	&& data->map[h / 48][(w / 48) + 1] != 'E')
 		move_player(data, 1, 0);
 	data->game.player_dir = 1;
+	player_frame(data);
 }
 
 void	move_player(t_data *data, int x_offset, int y_offset)
@@ -59,7 +61,6 @@ void	move_player(t_data *data, int x_offset, int y_offset)
 	w = data->game.player_w;
 	if (is_game_over(data))
 		return;
-	put_moves_counter_frame(data);
 	update_moves_counter(data);
 	if (is_game_over(data))
 		return ;

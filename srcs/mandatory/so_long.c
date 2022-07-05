@@ -19,16 +19,8 @@ int	quit_game(t_data *data)
 	mlx_destroy_image(data->mlx, data->game.grass);
 	mlx_destroy_image(data->mlx, data->game.wall);
 	mlx_destroy_image(data->mlx, data->game.collectible);
-	mlx_destroy_image(data->mlx, data->game.moves_frame);
-	i = 0;
-	while (i < 5)
-		mlx_destroy_image(data->mlx, data->game.p_anim_r[i++]);
-	i = 0;
-	while (i < 5)
-		mlx_destroy_image(data->mlx, data->game.p_anim_l[i++]);
-	i = 0;
-	while (i < 6)
-		mlx_destroy_image(data->mlx, data->game.p_anim_s[i++]);
+	mlx_destroy_image(data->mlx, data->game.p_anim_r[0]);
+	mlx_destroy_image(data->mlx, data->game.p_anim_l[0]);
 	i = 0;
 	while (i < 3)
 		mlx_destroy_image(data->mlx, data->game.exit[i++]);
@@ -50,12 +42,6 @@ void	set_hooks(t_data *data)
 {
 	mlx_hook(data->mlx_win, 17, 0, quit_game, data);
 }
-
-// int	is_case_reachable(int coord[2], int off[2], t_data *data)
-// {
-// 	if (data->map[(coord[0] / 48) + off[1]][(coord[1] / 48) + off[1]] != '1')
-// 		return (1)
-// }
 
 int	deal_key(int key, t_data *data)
 {
@@ -83,7 +69,7 @@ int	initialize_game(t_data *data)
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(
 			data->mlx, data->w_res * 48,
-			(data->h_res + 1) * 48, "so_long");
+			(data->h_res) * 48, "so_long");
 	return (0);
 }
 
@@ -102,14 +88,12 @@ int	main(int argc, char **argv)
 		throw_error(error);
 		return (1);
 	}
-	// check if w_res * 48 && h_res * 48 fit inside screensize else throw error !!!
 	initialize_game(&data);
 	load_textures(&data);
 	texture_map(&data);
 	load_animations(&data);
-	load_enemies(&data);
+	player_frame(&data);
 	mlx_key_hook(data.mlx_win, deal_key, &data);
-	mlx_loop_hook(data.mlx, clock, &data);
 	set_hooks(&data);
 	mlx_loop(data.mlx);
 	return (0);

@@ -4,6 +4,7 @@ int end_game(t_data *data)
 {
 	ft_putstr_fd("YOU WIN\n", 1);
 	update_exit(data, 2);
+	quit_game(data);
 	return (0);
 }
 

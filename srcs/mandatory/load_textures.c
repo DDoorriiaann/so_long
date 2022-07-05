@@ -7,8 +7,6 @@ int	load_background(t_data *data)
 
 	data->game.grass = mlx_xpm_file_to_image(
 			data->mlx, "./images/grass.xpm", &w, &h);
-	data->game.moves_frame = mlx_xpm_file_to_image(
-			data->mlx, "./images/buttons/moves_frame.xpm", &w, &h);
 	return (0);
 }
 

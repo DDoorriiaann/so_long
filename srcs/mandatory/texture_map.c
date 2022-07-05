@@ -47,7 +47,7 @@ void	texture_map(t_data *data)
 
 	i = 0;
 	j = 0;
-	while (i <= data->h_res)
+	while (i < data->h_res)
 	{
 		while (j < data->w_res)
 		{
@@ -66,8 +66,5 @@ void	texture_map(t_data *data)
 		j = 0;
 		i++;
 	}
-	put_moves_counter_frame(data);
 	update_moves_counter(data);
-	put_collectibles_counter_frame(data);
-	update_collectibles_counter(data);
 }

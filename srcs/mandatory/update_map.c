@@ -26,8 +26,6 @@ int	remove_collectible(t_data *data, int y_offset, int x_offset)
 	w = data->game.player_w;
 	data->map[(h / 48) + y_offset][(w / 48) + x_offset] = '0';
 		data->game.collectibles_nb--;
-	put_collectibles_counter_frame(data);
-	update_collectibles_counter(data);
 	if (data->game.collectibles_nb == 0)
 		update_exit(data, 1);
 	return (0);
