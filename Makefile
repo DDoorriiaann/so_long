@@ -24,7 +24,7 @@ SRCS_BONUS		=	so_long_bonus.c move_player.c move_enemies.c utils.c\
 				collectibles_counter.c animate_player.c update_map.c \
 				game_over.c check_map.c
 
-OBJS			=	${addprefix srcs/, ${SRCS:.c=.o}}
+OBJS			=	${addprefix srcs/mandatory/, ${SRCS:.c=.o}}
 
 OBJS_BONUS		=	${addprefix srcs/bonus/, ${SRCS_BONUS:.c=.o}}
 

@@ -111,6 +111,7 @@ void	texture_map(t_data *data);
 void	player_frame(t_data *data);
 int		is_game_over(t_data *data);
 int		end_game(t_data *data);
+int		quit_game(t_data *data);
 void	throw_error(t_error error);
 t_error check_map(t_data *data);
 t_error check_file_extension(char *path);
