@@ -29,9 +29,8 @@ int	quit_game(t_data *data)
 	free(data->mlx);
 	data->game.grass = NULL;
 	data->game.wall = NULL;
-	//data->game.exit = NULL;
 	i = 0;
-	while (i <= data->h_res)
+	while (i < data->h_res)
 		free(data->map[i++]);
 	free(data->map);
 	exit(0);
@@ -84,10 +83,7 @@ int	main(int argc, char **argv)
 	if (!error)
 		error = parse_map(argv[1], &data);
 	if (error)
-	{
-		throw_error(error);
-		return (1);
-	}
+		return (throw_error(error), 1);
 	initialize_game(&data);
 	load_textures(&data);
 	texture_map(&data);
