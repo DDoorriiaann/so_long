@@ -88,7 +88,7 @@ t_error	check_map(t_data *data)
 			if (error)
 				return (error);
 		}
-		counters.x = 0;
+		counters.x = -1;
 		counters.y++;
 	}
 	error = check_counters(&counters);
