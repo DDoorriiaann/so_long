@@ -93,7 +93,6 @@ int		update_moves_counter(t_data *data);
 int		remove_collectible(t_data *data, int y_offset, int x_offset);
 int		deal_key(int key, t_data *data);
 int		load_animations(t_data *data);
-int		load_enemies(t_data *data);
 int		load_textures(t_data *data);
 void	texture_map(t_data *data);
 void	player_frame(t_data *data);
