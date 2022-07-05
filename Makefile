@@ -26,9 +26,7 @@ SRCS_BONUS		=	so_long_bonus.c move_player.c move_enemies.c utils.c\
 
 OBJS			=	${addprefix srcs/, ${SRCS:.c=.o}}
 
-OBJS_BONUS		=	${addprefix srcs/, ${SRCS_BONUS:.c=.o}}
-
-#OBJS_BONUS		=	${addprefix srcs/bonus/,${SRCS_BONUS:.c=.o}}
+OBJS_BONUS		=	${addprefix srcs/bonus/, ${SRCS_BONUS:.c=.o}}
 
 LIB_FLAGS		=	-L libft -L mlx_linux
 
@@ -60,7 +58,7 @@ bonus			:	${OBJS_BONUS}
 					${CC} ${CFLAGS} ${LIB_FLAGS} ${OBJS_BONUS} -o ${NAME} -lft ${MLX_FLAGS}
 
 val				:	${NAME}
-					valgrind \
+					valgrind \ 
 					--leak-check=full --tool=memcheck \
 					--show-reachable=yes \
 					--track-fds=yes \
