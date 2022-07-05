@@ -1,5 +1,16 @@
-#include"so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   update_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 17:20:08 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/05 17:20:24 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include"so_long.h"
 
 int	update_exit(t_data *data, int code)
 {
@@ -25,7 +36,7 @@ int	remove_collectible(t_data *data, int y_offset, int x_offset)
 	h = data->game.player_h;
 	w = data->game.player_w;
 	data->map[(h / 48) + y_offset][(w / 48) + x_offset] = '0';
-		data->game.collectibles_nb--;
+	data->game.collectibles_nb--;
 	if (data->game.collectibles_nb == 0)
 		update_exit(data, 1);
 	return (0);

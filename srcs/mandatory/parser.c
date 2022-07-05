@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 17:37:16 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/05 17:38:33 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 #include "so_long.h"
 
@@ -36,8 +48,9 @@ t_error	get_map_size(int fd, t_data *data)
 		return (MAP_TOO_SMALL);
 	while (line != NULL)
 	{
-		if (((int)ft_strlen(line) != line_len) 
-				|| ((int)ft_strlen(line) == line_len - 1 && line[line_len - 1] != '\0'))
+		if (((int)ft_strlen(line) != line_len)
+			|| ((int)ft_strlen(line) == \
+			line_len - 1 && line[line_len - 1] != '\0'))
 			return (WRONG_LINE_LENGTH);
 		free(line);
 		i++;
@@ -60,7 +73,7 @@ int	open_map(char *pathname)
 
 t_error	parse_map(char *pathname, t_data *data)
 {
-	int	fd;
+	int		fd;
 	t_error	error_code;
 
 	error_code = 0;
