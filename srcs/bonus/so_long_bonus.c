@@ -14,33 +14,8 @@
 
 int	quit_game(t_data *data)
 {
-	int	i;
-
-	mlx_destroy_image(data->mlx, data->game.grass);
-	mlx_destroy_image(data->mlx, data->game.wall);
-	mlx_destroy_image(data->mlx, data->game.collectible);
-	mlx_destroy_image(data->mlx, data->game.moves_frame);
-	i = 0;
-	while (i < 5)
-		mlx_destroy_image(data->mlx, data->game.p_anim_r[i++]);
-	i = 0;
-	while (i < 5)
-		mlx_destroy_image(data->mlx, data->game.p_anim_l[i++]);
-	i = 0;
-	while (i < 6)
-		mlx_destroy_image(data->mlx, data->game.p_anim_s[i++]);
-	i = 0;
-	while (i < 3)
-		mlx_destroy_image(data->mlx, data->game.exit[i++]);
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	data->game.grass = NULL;
-	data->game.wall = NULL;
-	i = 0;
-	while (i <= data->h_res)
-		free(data->map[i++]);
-	free(data->map);
+	destroy_images(data);
+	destroy_game(data);
 	exit(0);
 	return (0);
 }
