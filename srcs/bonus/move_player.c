@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 17:52:14 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/05 17:52:29 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	move_player_down(t_data *data)
@@ -58,7 +70,7 @@ void	move_player(t_data *data, int x_offset, int y_offset)
 	h = data->game.player_h;
 	w = data->game.player_w;
 	if (is_game_over(data))
-		return;
+		return ;
 	put_moves_counter_frame(data);
 	update_moves_counter(data);
 	if (is_game_over(data))

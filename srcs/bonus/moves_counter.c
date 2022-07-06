@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_counter.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 18:01:45 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/05 18:01:47 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"so_long.h"
 
 int	update_moves_counter(t_data *data)
@@ -12,9 +24,6 @@ int	update_moves_counter(t_data *data)
 	mlx_string_put(data->mlx, data->mlx_win,
 		94, win_h - 21, 16777215, moves_nb);
 	free(moves_nb);
-	ft_putstr_fd("Moves count: ", 1);
-	ft_putnbr_fd(data->moves, 1);
-	ft_putchar_fd('\n', 1);
 	data->moves++;
 	return (0);
 }

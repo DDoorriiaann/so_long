@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_animations.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 17:51:25 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/06 14:06:59 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	load_player_anim1(t_data *data)
@@ -48,30 +60,9 @@ int	load_player_sleep(t_data *data)
 	return (0);
 }
 
-// int	load_enemy_main_anim(t_data *data)
-// {
-// 	int	w;
-// 	int	h;
-
-// 	data->game.enemy_anim[0] = mlx_xpm_file_to_image(
-// 			data->mlx, "./images/chicken/idle/chicken-idle-1.xpm", &w, &h);
-// 	data->game.enemy_anim[1] = mlx_xpm_file_to_image(
-// 			data->mlx, "./images/chicken/idle/chicken-idle-2.xpm", &w, &h);
-// 	data->game.enemy_anim[2] = mlx_xpm_file_to_image(
-// 			data->mlx, "./images/chicken/idle/chicken-idle-3.xpm", &w, &h);
-// 	data->game.enemy_anim[3] = mlx_xpm_file_to_image(
-// 			data->mlx, "./images/chicken/idle/chicken-idle-4.xpm", &w, &h);
-// 	data->game.enemy_anim[4] = mlx_xpm_file_to_image(
-// 			data->mlx, "./images/chicken/idle/chicken-idle-5.xpm", &w, &h);
-// 	data->game.enemy_anim[5] = mlx_xpm_file_to_image(
-// 			data->mlx, "./images/chicken/idle/chicken-idle-6.xpm", &w, &h);
-// 	return (0);
-// }
-
 int	load_animations(t_data *data)
 {
 	load_player_anim1(data);
 	load_player_sleep(data);
-	//load_enemy_main_anim(data);
 	return (0);
 }

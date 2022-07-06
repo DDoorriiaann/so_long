@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:08:20 by dguet             #+#    #+#             */
-/*   Updated: 2022/05/16 23:50:16 by dguet            ###   ########.fr       */
+/*   Updated: 2022/07/06 14:08:47 by dguet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	quit_game(t_data *data)
 	free(data->mlx);
 	data->game.grass = NULL;
 	data->game.wall = NULL;
-	//data->game.exit = NULL;
 	i = 0;
 	while (i <= data->h_res)
 		free(data->map[i++]);
@@ -50,12 +49,6 @@ void	set_hooks(t_data *data)
 {
 	mlx_hook(data->mlx_win, 17, 0, quit_game, data);
 }
-
-// int	is_case_reachable(int coord[2], int off[2], t_data *data)
-// {
-// 	if (data->map[(coord[0] / 48) + off[1]][(coord[1] / 48) + off[1]] != '1')
-// 		return (1)
-// }
 
 int	deal_key(int key, t_data *data)
 {
@@ -102,7 +95,6 @@ int	main(int argc, char **argv)
 		throw_error(error);
 		return (1);
 	}
-	// check if w_res * 48 && h_res * 48 fit inside screensize else throw error !!!
 	initialize_game(&data);
 	load_textures(&data);
 	texture_map(&data);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/06 14:03:25 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/06 14:03:26 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	animate_player(t_data *data)
@@ -17,18 +29,6 @@ void	animate_player(t_data *data)
 
 void	animate_enemies(t_data *data)
 {
-	// int	i;
-
-	// i = 0;
-	// while (i < data->game.enemies_nb)
-	// {
-	// 	mlx_put_image_to_window(data->mlx,
-	// 						data->mlx_win,
-	// 						data->game.enemy_anim[(data->frame) / 8], 
-	// 						data->game.enemies_w[i],
-	// 						data->game.enemies_h[i]);
-	// 	i++;
-	// }
 	mlx_put_image_to_window(
 		data->mlx,
 		data->mlx_win,

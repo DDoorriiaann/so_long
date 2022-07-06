@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_enemies.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 18:12:52 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/06 14:02:09 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	enemies_frame(t_data *data)
@@ -15,6 +27,16 @@ void	enemies_frame(t_data *data)
 			data->game.enemies_h[i]);
 		i++;
 	}
+}
+
+void	put_grass(t_data *data)
+{
+	mlx_put_image_to_window(
+		data->mlx, data->mlx_win,
+		data->game.grass, data->game.enemies_w[i],
+		data->game.enemies_h[i]);
+	data->game.enemies_w[i] += x_offset * 48;
+	data->game.enemies_h[i] += y_offset * 48;
 }
 
 void	move_enemies(t_data *data)
@@ -38,29 +60,7 @@ void	move_enemies(t_data *data)
 			y_offset = 1;
 		if (rand == 3)
 			y_offset = -1;
-		mlx_put_image_to_window(
-			data->mlx, data->mlx_win,
-			data->game.grass, data->game.enemies_w[i],
-			data->game.enemies_h[i]);
-		data->game.enemies_w[i] += x_offset * 48;
-		data->game.enemies_h[i] += y_offset * 48;
 		i++;
 	}
-	// if (x_offset < 0)
-	// {
-	// 	mlx_put_image_to_window(data->mlx, 
-	// 							data->mlx_win, 
-	// 							data->game.player_l, 
-	// 							data->game.player_w,
-	// 							data->game.player_h);
-	// }
-	// else
-	// {
-	// 	mlx_put_image_to_window(data->mlx, 
-	// 							data->mlx_win, 
-	// 							data->game.player_r, 
-	// 							data->game.player_w,
-	// 							data->game.player_h);
-	// }
 	enemies_frame(data);
 }

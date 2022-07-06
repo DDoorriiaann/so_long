@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/06 14:03:56 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/06 14:05:30 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 #include "so_long.h"
 
@@ -8,7 +20,7 @@ t_error	add_counters_space(t_data *data)
 
 	line = malloc(data->w_res + 1);
 	if (!line)
-			return (MALLOC_ERROR);
+		return (MALLOC_ERROR);
 	i = 0;
 	while (i < data->w_res)
 	{
@@ -33,7 +45,6 @@ t_error	ber_to_array(int fd, t_data *data)
 		line = get_next_line(fd);
 		if (!line)
 			return (MALLOC_ERROR);
-		// data->map[i] = malloc(strlen(line) + 1);
 		data->map[i] = ft_strdup(line);
 		free(line);
 		line = NULL;
@@ -58,8 +69,9 @@ t_error	get_map_size(int fd, t_data *data)
 		return (MAP_TOO_SMALL);
 	while (line != NULL)
 	{
-		if (((int)ft_strlen(line) != line_len) 
-				|| ((int)ft_strlen(line) == line_len - 1 && line[line_len - 1] != '\0'))
+		if (((int)ft_strlen(line) != line_len)
+			|| ((int)ft_strlen(line) == \
+			line_len - 1 && line[line_len - 1] != '\0'))
 			return (WRONG_LINE_LENGTH);
 		free(line);
 		i++;
@@ -82,7 +94,7 @@ int	open_map(char *pathname)
 
 t_error	parse_map(char *pathname, t_data *data)
 {
-	int	fd;
+	int		fd;
 	t_error	error_code;
 
 	error_code = 0;

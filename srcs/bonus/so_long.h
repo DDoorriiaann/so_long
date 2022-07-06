@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 17:52:42 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/05 17:53:28 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../mlx_linux/mlx.h"
@@ -5,8 +17,6 @@
 # include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-
-
 
 typedef struct s_game
 {
@@ -46,7 +56,7 @@ typedef struct s_data
 	int		idle_time;
 }	t_data;
 
-typedef	enum error
+typedef enum error
 {
 	NO_ERROR,
 	CORRUPTED_FILE,
@@ -67,7 +77,6 @@ typedef struct s_mapcheck
 	int	x;
 	int	y;
 }	t_map_check;
-
 
 typedef struct s_errordesc
 {
@@ -95,6 +104,10 @@ void	move_player_left(t_data *data);
 void	move_player_right(t_data *data);
 void	move_enemies(t_data *data);
 void	put_exit(int w, int h, t_data *data);
+void	put_background(int w, int h, t_data *data);
+void	put_wall(int w, int h, t_data *data);
+void	put_collectible(int w, int h, t_data *data);
+void	put_player(int w, int h, t_data *data);
 int		update_exit(t_data *data, int code);
 int		put_moves_counter_frame(t_data *data);
 int		update_moves_counter(t_data *data);
@@ -111,9 +124,11 @@ void	texture_map(t_data *data);
 void	player_frame(t_data *data);
 int		is_game_over(t_data *data);
 int		end_game(t_data *data);
+void	destroy_images(t_data *data);
+void	destroy_game(t_data *data);
 int		quit_game(t_data *data);
 void	throw_error(t_error error);
-t_error check_map(t_data *data);
-t_error check_file_extension(char *path);
+t_error	check_map(t_data *data);
+t_error	check_file_extension(char *path);
 
 #endif

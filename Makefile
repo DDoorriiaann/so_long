@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	so_long.c move_player.c \
+SRCS			=	so_long.c move_player.c put_images.c\
 				load_animations.c parser.c \
 				get_next_line.c get_next_line_utils.c errors.c \
 				texture_map.c load_textures.c moves_counter.c \
@@ -18,8 +18,8 @@ SRCS			=	so_long.c move_player.c \
 				game_over.c check_map.c
 
 SRCS_BONUS		=	so_long_bonus.c move_player.c move_enemies.c utils.c\
-				load_animations.c load_enemies.c parser.c \
-				get_next_line.c get_next_line_utils.c errors.c \
+				load_animations.c load_enemies.c parser.c put_images.c\
+				get_next_line.c get_next_line_utils.c errors.c destroy.c\
 				texture_map.c load_textures.c moves_counter.c \
 				collectibles_counter.c animate_player.c update_map.c \
 				game_over.c check_map.c

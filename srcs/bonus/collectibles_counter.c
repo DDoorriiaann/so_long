@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   collectibles_counter.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/06 13:57:39 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/06 13:58:54 by dguet            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"so_long.h"
 
 int	update_collectibles_counter(t_data *data)
@@ -10,7 +22,7 @@ int	update_collectibles_counter(t_data *data)
 	win_w = data->w_res * 48;
 	moves_nb = ft_itoa(data->game.collectibles_nb);
 	mlx_string_put(data->mlx, data->mlx_win,
-		win_w - 123 , win_h - 21, 16777215, "CHICKENS :");
+		win_w - 123, win_h - 21, 16777215, "CHICKENS :");
 	mlx_string_put(data->mlx, data->mlx_win,
 		win_w - 38, win_h - 21, 16777215, moves_nb);
 	free(moves_nb);
