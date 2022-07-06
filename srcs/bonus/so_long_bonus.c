@@ -99,7 +99,6 @@ int	main(int argc, char **argv)
 	load_textures(&data);
 	texture_map(&data);
 	load_animations(&data);
-	load_enemies(&data);
 	mlx_key_hook(data.mlx_win, deal_key, &data);
 	mlx_loop_hook(data.mlx, clock, &data);
 	set_hooks(&data);

@@ -27,16 +27,6 @@ void	animate_player(t_data *data)
 	}
 }
 
-void	animate_enemies(t_data *data)
-{
-	mlx_put_image_to_window(
-		data->mlx,
-		data->mlx_win,
-		data->game.enemy_anim[(data->frame) / 4],
-		data->game.enemies_w[0],
-		data->game.enemies_h[0]);
-}
-
 int	ft_rand(void)
 {
 	static int	seed = 69;
@@ -57,11 +47,7 @@ int	clock(t_data *data)
 	{	
 		data->frame = 0;
 		data->idle_time++;
-		if (data->game.enemies_nb > 0)
-			move_enemies(data);
 	}
 	animate_player(data);
-	if (data->game.enemies_nb > 0)
-		animate_enemies(data);
 	return (data->frame);
 }
