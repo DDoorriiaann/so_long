@@ -29,14 +29,12 @@ void	enemies_frame(t_data *data)
 	}
 }
 
-void	put_grass(t_data *data)
+void	put_grass(t_data *data, int i)
 {
 	mlx_put_image_to_window(
 		data->mlx, data->mlx_win,
 		data->game.grass, data->game.enemies_w[i],
 		data->game.enemies_h[i]);
-	data->game.enemies_w[i] += x_offset * 48;
-	data->game.enemies_h[i] += y_offset * 48;
 }
 
 void	move_enemies(t_data *data)
@@ -60,6 +58,9 @@ void	move_enemies(t_data *data)
 			y_offset = 1;
 		if (rand == 3)
 			y_offset = -1;
+		put_grass(data, i);
+		data->game.enemies_w[i] += x_offset * 48;
+		data->game.enemies_h[i] += y_offset * 48;
 		i++;
 	}
 	enemies_frame(data);
