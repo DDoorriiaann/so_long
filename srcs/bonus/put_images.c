@@ -48,6 +48,14 @@ void	put_exit(int w, int h, t_data *data)
 
 void	put_player(int w, int h, t_data *data)
 {
-	data->game.player_h = h * 48;
-	data->game.player_w = w * 48;
+	if (data->game.player_h == 0 && data->game.player_w == 0)
+	{
+		data->game.player_h = h * 48;
+		data->game.player_w = w * 48;
+	}
+	else
+	{
+		data->map[h][w] = 'O';
+		put_background(w, h, data);
+	}
 }

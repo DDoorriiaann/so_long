@@ -23,16 +23,16 @@ void	texture_map(t_data *data)
 	{
 		while (j < data->w_res)
 		{
-			if (data->map[i][j] == '0')
-				put_background(j, i, data);
+			if (data->map[i][j] == 'P')
+				put_player(j, i, data);
 			else if (data->map[i][j] == '1')
 				put_wall(j, i, data);
 			else if (data->map[i][j] == 'C')
 				put_collectible(j, i, data);
 			else if (data->map[i][j] == 'E')
 				put_exit(j, i, data);
-			else if (data->map[i][j] == 'P')
-				put_player(j, i, data);
+			else if (data->map[i][j] == '0')
+				put_background(j, i, data);
 			j++;
 		}
 		j = 0;
