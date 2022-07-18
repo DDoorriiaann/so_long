@@ -70,6 +70,7 @@ t_error	check_map(t_data *data)
 {
 	t_map_check	counters;
 	t_error		error;
+	int			i;
 
 	counters.x = -1;
 	counters.y = 0;
@@ -77,20 +78,28 @@ t_error	check_map(t_data *data)
 	counters.e_count = 0;
 	counters.p_count = 0;
 	error = NO_ERROR;
-	while (counters.y < data->h_res)
+	while (counters.y < data->h_res && !error)
 	{
 		while (++counters.x < data->w_res)
 		{
 			error = check_borders(data, &counters);
 			if (error)
-				return (error);
+				break;
 			error = check_elements(data, &counters);
 			if (error)
-				return (error);
+				break;
 		}
 		counters.x = -1;
 		counters.y++;
 	}
-	error = check_counters(&counters);
+	if (!error)
+		error = check_counters(&counters);
+	if (error)
+	{
+		i = 0;
+		while (i < data->h_res)
+			free(data->map[i++]);
+		free(data->map);
+	}
 	return (error);
 }

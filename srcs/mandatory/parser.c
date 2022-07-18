@@ -38,27 +38,30 @@ t_error	get_map_size(int fd, t_data *data)
 	char	*line;
 	int		line_len;
 	int		i;
+	t_error	error;
 
 	i = 0;
+	error = NO_ERROR;
 	line = get_next_line(fd);
 	if (!line)
 		return (MALLOC_ERROR);
 	line_len = ft_strlen(line);
 	if (line_len == 0 || (line[0] == '\n' && line_len == 1))
-		return (MAP_TOO_SMALL);
+			error = MAP_TOO_SMALL;
 	while (line != NULL)
 	{
 		if (((int)ft_strlen(line) != line_len)
-			|| ((int)ft_strlen(line) == \
+			&& ((int)ft_strlen(line) == \
 			line_len - 1 && line[line_len - 1] != '\0'))
-			return (WRONG_LINE_LENGTH);
+				error = WRONG_LINE_LENGTH;
 		free(line);
 		i++;
 		line = get_next_line(fd);
 	}
+	free(line);
 	data->w_res = line_len - 1;
 	data->h_res = i;
-	return (NO_ERROR);
+	return (error);
 }
 
 int	open_map(char *pathname)
