@@ -70,36 +70,18 @@ t_error	check_map(t_data *data)
 {
 	t_map_check	counters;
 	t_error		error;
-	int			i;
 
-	counters.x = -1;
-	counters.y = 0;
-	counters.c_count = 0;
-	counters.e_count = 0;
-	counters.p_count = 0;
+	counters = initialize_counters(counters);
 	error = NO_ERROR;
 	while (counters.y < data->h_res && !error)
 	{
-		while (++counters.x < data->w_res)
-		{
-			error = check_borders(data, &counters);
-			if (error)
-				break;
-			error = check_elements(data, &counters);
-			if (error)
-				break;
-		}
+		error = check_borders_and_elements(data, counters);
 		counters.x = -1;
 		counters.y++;
 	}
 	if (!error)
 		error = check_counters(&counters);
 	if (error)
-	{
-		i = 0;
-		while (i < data->h_res)
-			free(data->map[i++]);
-		free(data->map);
-	}
+		free_map(data);
 	return (error);
 }

@@ -60,16 +60,16 @@ int	initialize_game(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	t_error	error;
 
 	if (argc != 2)
 		return (1);
-	error = check_file_extension(argv[1]);
-	if (!error)
-		error = parse_map(argv[1], &data);
-	if (error)
+	data.error = NO_ERROR;
+	data.error = check_file_extension(argv[1]);
+	if (!data.error)
+		data.error = parse_map(argv[1], &data);
+	if (data.error)
 	{
-		throw_error(error);
+		throw_error(data.error);
 		return (1);
 	}
 	initialize_game(&data);

@@ -38,22 +38,20 @@ t_error	get_map_size(int fd, t_data *data)
 	char	*line;
 	int		line_len;
 	int		i;
-	t_error	error;
 
 	i = 0;
-	error = NO_ERROR;
 	line = get_next_line(fd);
 	if (!line)
 		return (MALLOC_ERROR);
 	line_len = ft_strlen(line);
 	if (line_len == 0 || (line[0] == '\n' && line_len == 1))
-			error = MAP_TOO_SMALL;
+			data->error = MAP_TOO_SMALL;
 	while (line != NULL)
 	{
 		if (((int)ft_strlen(line) != line_len)
 			&& ((int)ft_strlen(line) == \
 			line_len - 1 && line[line_len - 1] != '\0'))
-				error = WRONG_LINE_LENGTH;
+				data->error = WRONG_LINE_LENGTH;
 		free(line);
 		i++;
 		line = get_next_line(fd);
@@ -61,7 +59,7 @@ t_error	get_map_size(int fd, t_data *data)
 	free(line);
 	data->w_res = line_len - 1;
 	data->h_res = i;
-	return (error);
+	return (data->error);
 }
 
 int	open_map(char *pathname)
@@ -77,25 +75,23 @@ int	open_map(char *pathname)
 t_error	parse_map(char *pathname, t_data *data)
 {
 	int		fd;
-	t_error	error_code;
 
-	error_code = 0;
 	if (!pathname)
 		return (1);
 	fd = open_map(pathname);
 	if (fd == -1)
 		return (CORRUPTED_FILE);
-	error_code = get_map_size(fd, data);
+	data->error = get_map_size(fd, data);
 	close(fd);
-	if (error_code)
-		return (error_code);
+	if (data->error)
+		return (data->error);
 	fd = open_map(pathname);
 	if (fd == -1)
 		return (CORRUPTED_FILE);
-	error_code = ber_to_array(fd, data);
-	error_code = check_map(data);
-	if (error_code)
-		return (error_code);
+	data->error = ber_to_array(fd, data);
+	data->error = check_map(data);
+	if (data->error)
+		return (data->error);
 	close(fd);
 	return (NO_ERROR);
 }

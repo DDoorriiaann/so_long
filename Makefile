@@ -15,14 +15,14 @@ SRCS			=	so_long.c move_player.c put_images.c\
 				get_next_line.c get_next_line_utils.c errors.c \
 				texture_map.c load_textures.c moves_counter.c \
 				animate_player.c update_map.c \
-				game_over.c check_map.c
+				game_over.c check_map.c check_map2.c
 
 SRCS_BONUS		=	so_long_bonus.c move_player.c utils.c\
 				load_animations.c parser.c put_images.c\
 				get_next_line.c get_next_line_utils.c errors.c destroy.c\
 				texture_map.c load_textures.c moves_counter.c \
 				collectibles_counter.c animate_player.c update_map.c \
-				game_over.c check_map.c
+				game_over.c check_map.c check_map2.c
 
 OBJS			=	${addprefix srcs/mandatory/, ${SRCS:.c=.o}}
 
@@ -58,7 +58,7 @@ bonus			:	${OBJS_BONUS}
 					${CC} ${CFLAGS} ${LIB_FLAGS} ${OBJS_BONUS} -o ${NAME} -lft ${MLX_FLAGS}
 
 val				:	${NAME}
-					valgrind \ 
+					valgrind \
 					--leak-check=full --tool=memcheck \
 					--show-reachable=yes \
 					--track-fds=yes \
