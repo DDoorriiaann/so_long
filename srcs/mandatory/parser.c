@@ -45,13 +45,13 @@ t_error	get_map_size(int fd, t_data *data)
 		return (MALLOC_ERROR);
 	line_len = ft_strlen(line);
 	if (line_len == 0 || (line[0] == '\n' && line_len == 1))
-			data->error = MAP_TOO_SMALL;
+		data->error = MAP_TOO_SMALL;
 	while (line != NULL)
 	{
 		if (((int)ft_strlen(line) != line_len)
 			&& ((int)ft_strlen(line) == \
 			line_len - 1 && line[line_len - 1] != '\0'))
-				data->error = WRONG_LINE_LENGTH;
+			data->error = WRONG_LINE_LENGTH;
 		free(line);
 		i++;
 		line = get_next_line(fd);
