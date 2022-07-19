@@ -126,7 +126,7 @@ void		throw_error(t_error error);
 void		free_map(t_data *data);
 t_error		check_map(t_data *data);
 t_map_check	initialize_counters(t_map_check counters);
-t_error		check_borders_and_elements(t_data *data, t_map_check counters);
+t_error		check_borders_and_elements(t_data *data, t_map_check *counters);
 t_error		check_elements(t_data *data, t_map_check *counters);
 t_error		check_borders(t_data *data, t_map_check *counters);
 t_error		check_file_extension(char *path);

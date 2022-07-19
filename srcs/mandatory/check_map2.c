@@ -1,27 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_map2.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 18:08:16 by dguet             #+#    #+#             */
-/*   Updated: 2022/07/18 18:08:18 by dguet            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include"so_long.h"
 
-t_error	check_borders_and_elements(t_data *data, t_map_check counters)
+t_error	check_borders_and_elements(t_data *data, t_map_check *counters)
 {
 	t_error		error;
 
 	error = NO_ERROR;
-	while (++counters.x < data->w_res && ! error)
+	while (++counters->x < data->w_res && ! error)
 	{
-		error = check_borders(data, &counters);
+		error = check_borders(data, counters);
 		if (!error)
-			error = check_elements(data, &counters);
+			error = check_elements(data, counters);
 	}
 	return (error);
 }

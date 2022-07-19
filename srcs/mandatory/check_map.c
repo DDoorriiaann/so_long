@@ -75,7 +75,7 @@ t_error	check_map(t_data *data)
 	error = NO_ERROR;
 	while (counters.y < data->h_res && !error)
 	{
-		error = check_borders_and_elements(data, counters);
+		error = check_borders_and_elements(data, &counters);
 		counters.x = -1;
 		counters.y++;
 	}

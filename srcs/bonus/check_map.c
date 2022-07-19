@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dguet <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 17:53:41 by dguet             #+#    #+#             */
-/*   Updated: 2022/07/05 17:59:44 by dguet            ###   ########.fr       */
+/*   Created: 2022/07/05 17:24:47 by dguet             #+#    #+#             */
+/*   Updated: 2022/07/05 17:28:22 by dguet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_error	check_map(t_data *data)
 	error = NO_ERROR;
 	while (counters.y < data->h_res && !error)
 	{
-		error = check_borders_and_elements(data, counters);
+		error = check_borders_and_elements(data, &counters);
 		counters.x = -1;
 		counters.y++;
 	}
