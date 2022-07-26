@@ -49,7 +49,7 @@ t_error	get_map_size(int fd, t_data *data)
 	while (line != NULL)
 	{
 		if (((int)ft_strlen(line) != line_len)
-			&& ((int)ft_strlen(line) == \
+			|| ((int)ft_strlen(line) == \
 			line_len - 1 && line[line_len - 1] != '\0'))
 				data->error = WRONG_LINE_LENGTH;
 		free(line);
