@@ -19,7 +19,7 @@ void	free_map(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < data->h_res)
+	while (i <= data->h_res)
 		free(data->map[i++]);
 	free(data->map);
 }
