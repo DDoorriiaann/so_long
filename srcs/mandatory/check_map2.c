@@ -42,13 +42,13 @@ void	check_lines_len(t_data *data)
 	while (++i < data->h_res - 1)
 	{
 		if (((int)ft_strlen(data->map[i]) != line_len))
-		 	data->error = WRONG_LINE_LENGTH;
+			data->error = WRONG_LINE_LENGTH;
 	}
 	if (data->map[i][line_len - 1] == '\0'
 		&& data->map[i][line_len - 2] == '1')
 		return ;
 	if (((int)ft_strlen(data->map[i]) != line_len))
-		 	data->error = WRONG_LINE_LENGTH;
+			data->error = WRONG_LINE_LENGTH;
 }
 
 t_map_check	initialize_counters(t_map_check counters)

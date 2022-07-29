@@ -34,11 +34,7 @@ void	ber_to_array(int fd, t_data *data)
 		i++;
 	}
 }
-/* if (((int)ft_strlen(line) != line_len)
-	 	|| ((int)ft_strlen(line) == \
-		 	line_len - 1 && line[line_len - 1] != '\0'))
-		 		data->error = WRONG_LINE_LENGTH;
-*/
+
 void	get_map_size(int fd, t_data *data)
 {
 	char	*line;
