@@ -91,7 +91,7 @@ static const t_errordesc	g_errordesc[9] = {
 {INVALID_MAP, "Invalid map"},
 };
 
-t_error		parse_map(char *filename, t_data *data);
+void		parse_map(char *filename, t_data *data);
 void		move_player(t_data *data, int x_offset, int y_offset);
 void		move_player_up(t_data *data);
 void		move_player_down(t_data *data);
@@ -115,11 +115,12 @@ int			end_game(t_data *data);
 int			quit_game(t_data *data);
 void		throw_error(t_error error);
 void		free_map(t_data *data);
-t_error		check_map(t_data *data);
+void		check_map(t_data *data);
+void		check_lines_len(t_data *data);
 t_map_check	initialize_counters(t_map_check counters);
-t_error		check_borders_and_elements(t_data *data, t_map_check *counters);
-t_error		check_elements(t_data *data, t_map_check *counters);
-t_error		check_borders(t_data *data, t_map_check *counters);
-t_error		check_file_extension(char *path);
+void		check_borders_and_elements(t_data *data, t_map_check *counters);
+void		check_elements(t_data *data, t_map_check *counters);
+void		check_borders(t_data *data, t_map_check *counters);
+void		check_file_extension(t_data *data, char *path);
 
 #endif

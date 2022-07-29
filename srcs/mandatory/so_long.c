@@ -81,9 +81,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	data.error = NO_ERROR;
-	data.error = check_file_extension(argv[1]);
+	check_file_extension(&data, argv[1]);
 	if (!data.error)
-		data.error = parse_map(argv[1], &data);
+		parse_map(argv[1], &data);
 	if (data.error)
 		return (throw_error(data.error), 1);
 	initialize_game(&data);

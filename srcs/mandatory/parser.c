@@ -13,7 +13,7 @@
 #include "get_next_line.h"
 #include "so_long.h"
 
-t_error	ber_to_array(int fd, t_data *data)
+void	ber_to_array(int fd, t_data *data)
 {
 	char	*line;
 	int		i;
@@ -24,16 +24,22 @@ t_error	ber_to_array(int fd, t_data *data)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (MALLOC_ERROR);
+		{
+			data->error = MALLOC_ERROR;
+			return ;
+		}
 		data->map[i] = ft_strdup(line);
 		free(line);
 		line = NULL;
 		i++;
 	}
-	return (NO_ERROR);
 }
-
-t_error	get_map_size(int fd, t_data *data)
+/* if (((int)ft_strlen(line) != line_len)
+	 	|| ((int)ft_strlen(line) == \
+		 	line_len - 1 && line[line_len - 1] != '\0'))
+		 		data->error = WRONG_LINE_LENGTH;
+*/
+void	get_map_size(int fd, t_data *data)
 {
 	char	*line;
 	int		line_len;
@@ -42,16 +48,15 @@ t_error	get_map_size(int fd, t_data *data)
 	i = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return (MALLOC_ERROR);
+	{
+		data->error = MALLOC_ERROR;
+		return ;
+	}
 	line_len = ft_strlen(line);
 	if (line_len == 0 || (line[0] == '\n' && line_len == 1))
 			data->error = MAP_TOO_SMALL;
 	while (line != NULL)
 	{
-		if (((int)ft_strlen(line) != line_len)
-			|| ((int)ft_strlen(line) == \
-			line_len - 1 && line[line_len - 1] != '\0'))
-				data->error = WRONG_LINE_LENGTH;
 		free(line);
 		i++;
 		line = get_next_line(fd);
@@ -59,7 +64,6 @@ t_error	get_map_size(int fd, t_data *data)
 	free(line);
 	data->w_res = line_len - 1;
 	data->h_res = i;
-	return (data->error);
 }
 
 int	open_map(char *pathname)
@@ -72,26 +76,29 @@ int	open_map(char *pathname)
 	return (fd);
 }
 
-t_error	parse_map(char *pathname, t_data *data)
+void	parse_map(char *pathname, t_data *data)
 {
 	int		fd;
 
 	if (!pathname)
-		return (1);
+		data->error = CORRUPTED_FILE;
+	if (!data->error)
+	{
+		fd = open_map(pathname);
+		if (fd == -1)
+			data->error = CORRUPTED_FILE;
+		if (!data->error)
+			get_map_size(fd, data);
+		close(fd);
+	}
+	if (data->error)
+		return ;
 	fd = open_map(pathname);
 	if (fd == -1)
-		return (CORRUPTED_FILE);
-	data->error = get_map_size(fd, data);
+		data->error = CORRUPTED_FILE;
+	if (!data->error)
+		ber_to_array(fd, data);
+	if (!data->error)
+		check_map(data);
 	close(fd);
-	if (data->error)
-		return (data->error);
-	fd = open_map(pathname);
-	if (fd == -1)
-		return (CORRUPTED_FILE);
-	data->error = ber_to_array(fd, data);
-	data->error = check_map(data);
-	if (data->error)
-		return (data->error);
-	close(fd);
-	return (NO_ERROR);
 }
