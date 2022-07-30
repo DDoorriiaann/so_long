@@ -47,7 +47,8 @@ void	check_lines_len(t_data *data)
 	if (data->map[i][line_len - 1] == '\0'
 		&& data->map[i][line_len - 2] == '1')
 		return ;
-	if (((int)ft_strlen(data->map[i]) != line_len))
+	if (((int)ft_strlen(data->map[i]) != line_len)
+		|| (data->map[i][line_len - 1] != '\n'))
 			data->error = WRONG_LINE_LENGTH;
 }
 

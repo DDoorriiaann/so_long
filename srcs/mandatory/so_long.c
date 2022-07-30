@@ -67,6 +67,8 @@ int	initialize_game(t_data *data)
 	data->game.exit_status = 0;
 	data->game.player_h = 0;
 	data->game.player_w = 0;
+	data->game.exit_coord[0] = 0;
+	data->game.exit_coord[1] = 0;
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(
 			data->mlx, data->w_res * 48,

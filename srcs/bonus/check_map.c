@@ -44,7 +44,11 @@ void	check_elements(t_data *data, t_map_check *counters)
 	if (data->map[counters->y][counters->x] == 'C')
 		counters->c_count += 1;
 	if (data->map[counters->y][counters->x] == 'E')
+	{
 		counters->e_count += 1;
+		if (counters->e_count > 1)
+			data->map[counters->y][counters->x] = '0';
+	}
 	if (data->map[counters->y][counters->x] == 'P')
 		counters->p_count += 1;
 	if (data->map[counters->y][counters->x] != 'C'
